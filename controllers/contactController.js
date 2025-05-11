@@ -5,6 +5,12 @@ const getContacts = (req,resp) => {
 
 const createContact = (req,resp) => {
     console.log("request body is:", req.body);
+    const {name,email,phone} = req.body;  //unpack json
+    if (!name || !email || !phone)
+    {
+        resp.status(400);
+        throw new Error("One or more fields are missing!")
+    }
     resp.status(201).json({"message": "Create Contact"});
 };
 
